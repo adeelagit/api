@@ -109,7 +109,7 @@ class AuthController extends Controller
         $host = $request->getHost();
 
         if (!$tenant) {
-            if (str_contains($host, '127.0.0.1') && $request->header('X-Tenant-Subdomain') === null) {
+            if (str_contains($host, '127.0.0.1') && $request->header('X-Tenant-Subdomain') === "") {
                 return response()->json([
                     'error' => 'Tenant identification required.',
                     'message' => 'Login failed. When using IP/Port (127.0.0.1:8000), please provide the company subdomain using the **X-Tenant-Subdomain** header in your request.'

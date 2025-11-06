@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="MySql" database="MySql" id="edbfda8f-dbfc-496b-9ab4-d7c9bda2f5f4" >
+	<schema name="pos" >
+		<table name="cache" row_count="9" spec="" >
+			<column name="key" type="VARCHAR" length="255" mandatory="y" />
+			<column name="value" type="MEDIUMTEXT" mandatory="y" />
+			<column name="expiration" type="INT" length="11" mandatory="y" />
+			<index name="pk_cache" unique="PRIMARY_KEY" >
+				<column name="key" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci]]></options>
+		</table>
+		<table name="cache_locks" row_count="0" spec="" >
+			<column name="key" type="VARCHAR" length="255" mandatory="y" />
+			<column name="owner" type="VARCHAR" length="255" mandatory="y" />
+			<column name="expiration" type="INT" length="11" mandatory="y" />
+			<index name="pk_cache_locks" unique="PRIMARY_KEY" >
+				<column name="key" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci]]></options>
+		</table>
+		<table name="failed_jobs" row_count="0" spec="" >
+			<column name="id" type="BIGINT" length="20" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="uuid" type="VARCHAR" length="255" mandatory="y" />
+			<column name="connection" type="TEXT" mandatory="y" />
+			<column name="queue" type="TEXT" mandatory="y" />
+			<column name="payload" type="LONGTEXT" mandatory="y" />
+			<column name="exception" type="LONGTEXT" mandatory="y" />
+			<column name="failed_at" type="TIMESTAMP" mandatory="y" >
+				<defo><![CDATA[current_timestamp()]]></defo>
+			</column>
+			<index name="pk_failed_jobs" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="failed_jobs_uuid_unique" unique="UNIQUE_KEY" >
+				<column name="uuid" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci]]></options>
+		</table>
+		<table name="job_batches" row_count="0" spec="" >
+			<column name="id" type="VARCHAR" length="255" mandatory="y" />
+			<column name="name" type="VARCHAR" length="255" mandatory="y" />
+			<column name="total_jobs" type="INT" length="11" mandatory="y" />
+			<column name="pending_jobs" type="INT" length="11" mandatory="y" />
+			<column name="failed_jobs" type="INT" length="11" mandatory="y" />
+			<column name="failed_job_ids" type="LONGTEXT" mandatory="y" />
+			<column name="options" type="MEDIUMTEXT" />
+			<column name="cancelled_at" type="INT" length="11" />
+			<column name="created_at" type="INT" length="11" mandatory="y" />
+			<column name="finished_at" type="INT" length="11" />
+			<index name="pk_job_batches" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci]]></options>
+		</table>
+		<table name="jobs" row_count="0" spec="" >
+			<column name="id" type="BIGINT" length="20" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="queue" type="VARCHAR" length="255" mandatory="y" />
+			<column name="payload" type="LONGTEXT" mandatory="y" />
+			<column name="attempts" type="TINYINT" length="3" mandatory="y" unsigned="y" />
+			<column name="reserved_at" type="INT" length="10" unsigned="y" />
+			<column name="available_at" type="INT" length="10" mandatory="y" unsigned="y" />
+			<column name="created_at" type="INT" length="10" mandatory="y" unsigned="y" />
+			<index name="pk_jobs" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="jobs_queue_index" unique="NORMAL" >
+				<column name="queue" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci]]></options>
+		</table>
+		<table name="migrations" row_count="5" spec="" >
+			<column name="id" type="INT" length="10" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="migration" type="VARCHAR" length="255" mandatory="y" />
+			<column name="batch" type="INT" length="11" mandatory="y" />
+			<index name="pk_migrations" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci]]></options>
+		</table>
+		<table name="password_reset_tokens" row_count="0" spec="" >
+			<column name="email" type="VARCHAR" length="255" mandatory="y" />
+			<column name="token" type="VARCHAR" length="255" mandatory="y" />
+			<column name="created_at" type="TIMESTAMP" />
+			<index name="pk_password_reset_tokens" unique="PRIMARY_KEY" >
+				<column name="email" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci]]></options>
+		</table>
+		<table name="personal_access_tokens" row_count="0" spec="" >
+			<column name="id" type="BIGINT" length="20" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="tokenable_type" type="VARCHAR" length="255" mandatory="y" />
+			<column name="tokenable_id" type="BIGINT" length="20" mandatory="y" unsigned="y" />
+			<column name="name" type="TEXT" mandatory="y" />
+			<column name="token" type="VARCHAR" length="64" mandatory="y" />
+			<column name="abilities" type="TEXT" />
+			<column name="last_used_at" type="TIMESTAMP" />
+			<column name="expires_at" type="TIMESTAMP" />
+			<column name="created_at" type="TIMESTAMP" />
+			<column name="updated_at" type="TIMESTAMP" />
+			<index name="pk_personal_access_tokens" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="personal_access_tokens_token_unique" unique="UNIQUE_KEY" >
+				<column name="token" />
+			</index>
+			<index name="personal_access_tokens_tokenable_type_tokenable_id_index" unique="NORMAL" >
+				<column name="tokenable_type" />
+				<column name="tokenable_id" />
+			</index>
+			<index name="personal_access_tokens_expires_at_index" unique="NORMAL" >
+				<column name="expires_at" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci]]></options>
+		</table>
+		<table name="restaurants" row_count="2" spec="" >
+			<column name="id" type="BIGINT" length="20" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="uuid" type="TEXT" />
+			<column name="name" type="VARCHAR" length="255" mandatory="y" />
+			<column name="slug" type="VARCHAR" length="255" />
+			<column name="address" type="TEXT" />
+			<column name="location" type="TEXT" />
+			<column name="mobile_number" type="VARCHAR" length="15" mandatory="y" />
+			<column name="status" type="ENUM" mandatory="y" >
+				<defo><![CDATA['active']]></defo>
+				<enumeration><![CDATA['active','inactive']]></enumeration>
+			</column>
+			<column name="subdomain" type="VARCHAR" length="255" mandatory="y" />
+			<column name="created_at" type="TIMESTAMP" />
+			<column name="updated_at" type="TIMESTAMP" />
+			<index name="pk_restaurants" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="restaurants_name_unique" unique="UNIQUE_KEY" >
+				<column name="name" />
+			</index>
+			<index name="restaurants_mobile_number_unique" unique="UNIQUE_KEY" >
+				<column name="mobile_number" />
+			</index>
+			<index name="restaurants_subdomain_unique" unique="UNIQUE_KEY" >
+				<column name="subdomain" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci]]></options>
+		</table>
+		<table name="sessions" row_count="1" spec="" >
+			<column name="id" type="VARCHAR" length="255" mandatory="y" />
+			<column name="user_id" type="BIGINT" length="20" unsigned="y" />
+			<column name="ip_address" type="VARCHAR" length="45" />
+			<column name="user_agent" type="TEXT" />
+			<column name="payload" type="LONGTEXT" mandatory="y" />
+			<column name="last_activity" type="INT" length="11" mandatory="y" />
+			<index name="pk_sessions" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="sessions_user_id_index" unique="NORMAL" >
+				<column name="user_id" />
+			</index>
+			<index name="sessions_last_activity_index" unique="NORMAL" >
+				<column name="last_activity" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci]]></options>
+		</table>
+		<table name="users" row_count="3" spec="" >
+			<column name="id" type="BIGINT" length="20" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="name" type="VARCHAR" length="255" mandatory="y" />
+			<column name="email" type="VARCHAR" length="255" mandatory="y" />
+			<column name="company_id" type="BIGINT" length="20" unsigned="y" />
+			<column name="email_verified_at" type="TIMESTAMP" />
+			<column name="password" type="VARCHAR" length="255" mandatory="y" />
+			<column name="access_token" type="TEXT" />
+			<column name="remember_token" type="VARCHAR" length="100" />
+			<column name="created_at" type="TIMESTAMP" />
+			<column name="updated_at" type="TIMESTAMP" />
+			<index name="pk_users" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="users_email_unique" unique="UNIQUE_KEY" >
+				<column name="email" />
+			</index>
+			<index name="users_company_id_foreign" unique="NORMAL" >
+				<column name="company_id" />
+			</index>
+			<fk name="users_company_id_foreign" to_schema="pos" to_table="restaurants" delete_action="cascade" options="" >
+				<fk_column name="company_id" pk="id" />
+			</fk>
+			<options><![CDATA[ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci]]></options>
+		</table>
+	</schema>
+	<layout name="Main Diagram" id="3146e4a4-ddb3-4341-9dbb-a2a627ca9740" show_relation="columns" >
+		<entity schema="pos" name="cache" color="BED3F4" x="285" y="532" />
+		<entity schema="pos" name="cache_locks" color="BED3F4" x="513" y="1121" />
+		<entity schema="pos" name="failed_jobs" color="BED3F4" x="513" y="532" />
+		<entity schema="pos" name="job_batches" color="BED3F4" x="266" y="760" />
+		<entity schema="pos" name="jobs" color="BED3F4" x="57" y="456" />
+		<entity schema="pos" name="migrations" color="BED3F4" x="285" y="304" />
+		<entity schema="pos" name="password_reset_tokens" color="BED3F4" x="513" y="304" />
+		<entity schema="pos" name="personal_access_tokens" color="BED3F4" x="741" y="532" />
+		<entity schema="pos" name="sessions" color="BED3F4" x="513" y="836" />
+		<entity schema="pos" name="restaurants" color="C7F4BE" x="988" y="95" />
+		<entity schema="pos" name="users" color="C7F4BE" x="1216" y="152" />
+		<callout x="494" y="114" pointer="Round" >
+			<comment><![CDATA[Double-click the table headers, columns, or foreign keys to edit.
+
+Create multiple diagrams with the same or different tables.
+The diagrams will be saved to the model file and can be later reopen.]]></comment>
+		</callout>
+		<group name="cache" color="ECF0F7" >
+			<entity schema="pos" name="cache" />
+			<entity schema="pos" name="failed_jobs" />
+			<entity schema="pos" name="job_batches" />
+			<entity schema="pos" name="jobs" />
+			<entity schema="pos" name="migrations" />
+			<entity schema="pos" name="password_reset_tokens" />
+			<entity schema="pos" name="personal_access_tokens" />
+			<entity schema="pos" name="sessions" />
+			<entity schema="pos" name="cache_locks" />
+		</group>
+		<group name="restaurants" color="EEF7EC" >
+			<entity schema="pos" name="restaurants" />
+			<entity schema="pos" name="users" />
+		</group>
+		<browser id="1047b198-23e8-4c04-80b1-77403ea201f8" name="restaurants" confirm_updates="y" >
+			<browse_table schema="pos" entity="restaurants" fk_out="n" x="20" y="20" width="270" height="194" />
+		</browser>
+		<browser id="69976b5d-3178-46e8-bee1-73fef86285a7" name="users" confirm_updates="y" >
+			<browse_table schema="pos" entity="users" fk_out="n" x="20" y="20" width="270" height="194" />
+		</browser>
+	</layout>
+	<layout name="~Diagram with Sample Tools" id="0ac1712d-888e-4b74-af7c-c9ff8f6e0a4a" show_column_type="y" show_relation="columns" >
+		<entity schema="pos" name="cache" color="BED3F4" x="342" y="342" />
+		<entity schema="pos" name="cache_locks" color="BED3F4" x="608" y="646" />
+		<entity schema="pos" name="failed_jobs" color="BED3F4" x="608" y="342" />
+		<entity schema="pos" name="job_batches" color="BED3F4" x="304" y="570" />
+		<entity schema="pos" name="jobs" color="BED3F4" x="57" y="266" />
+		<entity schema="pos" name="migrations" color="BED3F4" x="342" y="114" />
+		<entity schema="pos" name="password_reset_tokens" color="BED3F4" x="893" y="342" />
+		<entity schema="pos" name="personal_access_tokens" color="BED3F4" x="893" y="646" />
+		<entity schema="pos" name="restaurants" color="C7F4BE" x="1254" y="57" />
+		<entity schema="pos" name="sessions" color="BED3F4" x="893" y="57" />
+		<entity schema="pos" name="users" color="C7F4BE" x="1577" y="57" />
+		<script name="SQL Editor" id="a69f4699-74e4-4581-8ef6-e27fe235a5ae" language="SQL" >
+			<string><![CDATA[SELECT
+	id, uuid, name, slug, address, location, mobile_number, status, subdomain, created_at, updated_at
+FROM
+	pos.restaurants s;]]></string>
+		</script>
+		<browser id="43f2ae80-65f7-4336-a34d-28ee182b5f5a" name="Relational Data Editor" confirm_updates="y" >
+			<browse_table schema="pos" entity="restaurants" fk_out="n" x="20" y="20" width="270" height="-60" >
+				<browse_table schema="pos" entity="users" fk="users_company_id_foreign" fk_out="y" x="310" y="20" width="500" height="350" />
+			</browse_table>
+		</browser>
+	</layout>
+</project>
